@@ -9,6 +9,6 @@ public class BallTracker : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, _ball.transform.position.z - _beforeBallDistance);
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, (_speed + _ball.Speed) * Time.fixedDeltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, (_speed + _ball.CarrentSpeed) * Time.fixedDeltaTime);
     }
 }
