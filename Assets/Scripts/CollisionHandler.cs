@@ -1,13 +1,24 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class CollisionHandler : MonoBehaviour
 {
+    [SerializeField] private float _gemeOverDelay;
+    [SerializeField] private Vector3 _reboundVector;
+
     public UnityAction GameOver;
     public UnityAction<int> CoinCatched;
     public UnityAction<int> BonusChargesChanged;
 
     private int _currentBonusCharges = 0;
+    private Coroutine _coroutine;
+
+    private void OnEnable()
+    {
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,11 +26,11 @@ public class CollisionHandler : MonoBehaviour
         {
             if (_currentBonusCharges == 0)
             {
-                GameOver?.Invoke();
+                _coroutine = StartCoroutine(SetGameOver(_gemeOverDelay));
             }
             else
             {
-                collision.gameObject.SetActive(false);
+                obstacle.Disable();
                 _currentBonusCharges--;
                 BonusChargesChanged?.Invoke(_currentBonusCharges);
             }
@@ -30,7 +41,7 @@ public class CollisionHandler : MonoBehaviour
         if (other.TryGetComponent(out Coin coin))
         {
             CoinCatched?.Invoke(coin.ScoreValue);
-            coin.gameObject.SetActive(false);
+            coin.Disable();
         }
 
         if (other.TryGetComponent(out Bonus bonus))
@@ -38,7 +49,17 @@ public class CollisionHandler : MonoBehaviour
             _currentBonusCharges += bonus.BonusCharges;
             BonusChargesChanged?.Invoke(_currentBonusCharges);
             CoinCatched?.Invoke(bonus.ScoreValue);
-            bonus.gameObject.SetActive(false);
+            bonus.Disable();
         }
+    }
+
+    private IEnumerator SetGameOver(float gameOverDelay)
+    {
+        BallMover mover = gameObject.GetComponent<BallMover>();
+        mover.enabled = false;
+        gameObject.GetComponent<Rigidbody>().AddForce(_reboundVector, ForceMode.Impulse);
+        yield return new WaitForSeconds(gameOverDelay);
+        mover.enabled = true;
+        GameOver?.Invoke();
     }
 }

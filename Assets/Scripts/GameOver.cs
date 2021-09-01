@@ -22,7 +22,7 @@ public class GameOver : MonoBehaviour
 
     private void OnGameOver()
     {
-        SaveToFileTest();
+        //SaveToFileTest();
         _handler.gameObject.SetActive(false);
         _spawner.gameObject.SetActive(false);
         DisableObjectsInContainer(_notInteractiveObjectsContainer);
