@@ -57,7 +57,10 @@ public class CollisionHandler : MonoBehaviour
     {
         BallMover mover = gameObject.GetComponent<BallMover>();
         mover.enabled = false;
-        gameObject.GetComponent<Rigidbody>().AddForce(_reboundVector, ForceMode.Impulse);
+        var rb = gameObject.GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.isKinematic = false;
+        rb.AddForce(_reboundVector, ForceMode.Impulse);
         yield return new WaitForSeconds(gameOverDelay);
         mover.enabled = true;
         GameOver?.Invoke();

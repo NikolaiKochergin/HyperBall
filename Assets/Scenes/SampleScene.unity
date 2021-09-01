@@ -2904,6 +2904,7 @@ MonoBehaviour:
   _speed: 5
   _deflectionSpeed: 10
   _bonusSpeed: 10
+  _inputFieldShare: 0.68
 --- !u!54 &2067098724
 Rigidbody:
   m_ObjectHideFlags: 0
