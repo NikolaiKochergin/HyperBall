@@ -5012,7 +5012,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.95, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3616894699715096547
 MonoBehaviour:
@@ -5027,7 +5027,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 7236679701014124341}
-  _meshRenderer: {fileID: 3973527074795445345}
 --- !u!114 &5834047085694428129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10008,7 +10007,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.95, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &271666679042033813
 MonoBehaviour:
@@ -10023,7 +10022,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 7794522324117119103}
-  _meshRenderer: {fileID: 2622794193023764626}
 --- !u!114 &1341001885020039129
 MonoBehaviour:
   m_ObjectHideFlags: 0
