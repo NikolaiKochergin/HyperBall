@@ -9,10 +9,17 @@ public class Storage
 
     public Storage()
     {
-        _filePath = Application.persistentDataPath + "/GameSave.save";
+        var directory = Application.persistentDataPath + "/saves";
+        if (!Directory.Exists(directory))
+            Directory.CreateDirectory(directory);
 
-        if (!File.Exists(_filePath))
-            File.Create(_filePath).Close();
+        _filePath = directory + "/GameSave.save";
+        InitBinatyFormatter();
+    }
+
+    private void InitBinatyFormatter()
+    {
+        _formatter = new BinaryFormatter();
     }
 
     public object Load(object saveDataByDefault)
@@ -20,20 +27,21 @@ public class Storage
         if (!File.Exists(_filePath))
         {
             if (saveDataByDefault != null)
+            {
                 Save(saveDataByDefault);
+            }
             return saveDataByDefault;
         }
 
         var file = File.Open(_filePath, FileMode.Open);
-        var saveData = _formatter.Deserialize(file);
+        var savedData = _formatter.Deserialize(file);
         file.Close();
-        return saveData;
+        return savedData;
     }
-
 
     public void Save(object saveData)
     {
-        var file = File.Open(_filePath, FileMode.Open);
+        var file = File.Create(_filePath);
         _formatter.Serialize(file, saveData);
         file.Close();
     }

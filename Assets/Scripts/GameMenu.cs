@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameOver : MonoBehaviour
+public class GameMenu : MonoBehaviour
 {
     [SerializeField] private CollisionHandler _handler;
     [SerializeField] private WaveGenerator _spawner;
@@ -22,7 +22,6 @@ public class GameOver : MonoBehaviour
 
     private void OnGameOver()
     {
-        //SaveToFileTest();
         _handler.gameObject.SetActive(false);
         _spawner.gameObject.SetActive(false);
         DisableObjectsInContainer(_notInteractiveObjectsContainer);
@@ -35,13 +34,5 @@ public class GameOver : MonoBehaviour
     {
         foreach (Transform item in conteiner.transform)
             item.gameObject.SetActive(false);
-    }
-
-    private void SaveToFileTest()
-    {
-        var storage = new Storage();
-        var gameData = new GameData(_scoreViewer.Scores);
-        storage.Save(gameData);
-        Debug.Log(gameData.Score);
     }
 }

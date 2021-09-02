@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Obstacle4Fix2 : MonoBehaviour
+public class ChildsEnable : MonoBehaviour
 {
     private void OnEnable()
     {

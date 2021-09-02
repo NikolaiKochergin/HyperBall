@@ -12,21 +12,14 @@ public class CollisionHandler : MonoBehaviour
     public UnityAction<int> BonusChargesChanged;
 
     private int _currentBonusCharges = 0;
-    private Coroutine _coroutine;
-
-    private void OnEnable()
-    {
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
-    }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out Obstacle obstacle))
         {
             if (_currentBonusCharges == 0)
             {
-                _coroutine = StartCoroutine(SetGameOver(_gemeOverDelay));
+                StartCoroutine(SetGameOver(_gemeOverDelay));
             }
             else
             {

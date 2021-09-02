@@ -1,15 +1,12 @@
-﻿using System;
+using System;
 
 [Serializable]
-class GameData
+public class GameData
 {
-    public int Score => _score;
+    public int[] Records;
 
-    private int _score;
-
-    public GameData(int score = 0)
+    public GameData()
     {
-        _score = score;
+        Records = new int[3] { 0, 0, 0 };
     }
 }
-

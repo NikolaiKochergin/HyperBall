@@ -7,7 +7,7 @@ public class BallMover : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _deflectionSpeed;
     [SerializeField] private float _bonusSpeed;
-    [SerializeField] [Range(0, 1)] private float _inputFieldShare;
+    [SerializeField] [Range(0.5f, 1)] private float _inputFieldShare;
 
     public float CarrentSpeed => _carrentSpeed;
 
@@ -38,13 +38,11 @@ public class BallMover : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            float mousePositionX = Mathf.Clamp(Input.mousePosition.x - (Camera.main.scaledPixelWidth * 0.5f), -Camera.main.scaledPixelWidth * _inputFieldShare * 0.5f, Camera.main.scaledPixelWidth * _inputFieldShare * 0.5f);
+            float screenWidthHalf = Camera.main.scaledPixelWidth * 0.5f;
 
-            float targetPositionX = mousePositionX / (Camera.main.scaledPixelWidth * _inputFieldShare);
+            float targetPositionXNomalized = Mathf.Clamp(Input.mousePosition.x - screenWidthHalf, -screenWidthHalf * _inputFieldShare, screenWidthHalf * _inputFieldShare) / (Camera.main.scaledPixelWidth * _inputFieldShare);
 
-            //float targetPositionX = Mathf.Clamp((Input.mousePosition.x / Camera.main.scaledPixelWidth) - 0.5f, -0.5f, 0.5f);
-
-            float deltaPositionX = targetPositionX - transform.position.x;
+            float deltaPositionX = targetPositionXNomalized - transform.position.x;
 
             _rigidbody.velocity = new Vector3(deltaPositionX * _deflectionSpeed, 0, _rigidbody.velocity.z);
         }

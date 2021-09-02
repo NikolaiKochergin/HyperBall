@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class LastGameScoresViewer : MonoBehaviour
+public class YourScoresViewer : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
     [SerializeField] private ScoreViewer _viewer;

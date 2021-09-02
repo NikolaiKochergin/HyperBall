@@ -4929,7 +4929,6 @@ GameObject:
   - component: {fileID: 3973527074795445345}
   - component: {fileID: 4935576754873616738}
   - component: {fileID: 3616894699715096547}
-  - component: {fileID: 5834047085694428129}
   m_Layer: 0
   m_Name: Obstacle 1 part
   m_TagString: Untagged
@@ -5027,19 +5026,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 7236679701014124341}
---- !u!114 &5834047085694428129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3522714458747725041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0295c7c9e6ef53c42be48527d428bd7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _secondHalfOfObstacle: {fileID: 5326679246449832178}
 --- !u!1 &5033870549342330573
 GameObject:
   m_ObjectHideFlags: 0
@@ -9924,7 +9910,6 @@ GameObject:
   - component: {fileID: 2622794193023764626}
   - component: {fileID: 836044680532353421}
   - component: {fileID: 271666679042033813}
-  - component: {fileID: 1341001885020039129}
   m_Layer: 0
   m_Name: Obstacle 2 part
   m_TagString: Untagged
@@ -10022,16 +10007,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 7794522324117119103}
---- !u!114 &1341001885020039129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5326679246449832178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0295c7c9e6ef53c42be48527d428bd7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _secondHalfOfObstacle: {fileID: 3522714458747725041}
