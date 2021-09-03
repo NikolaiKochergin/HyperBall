@@ -8,7 +8,6 @@ public class GameMenu : MonoBehaviour
     [SerializeField] private GameObject _gameOverMenu;
     [SerializeField] private GameObject _notInteractiveObjectsContainer;
     [SerializeField] private GameObject _interactiveObjectsContainer;
-    [SerializeField] private ScoreViewer _scoreViewer;
 
     private void OnEnable()
     {
