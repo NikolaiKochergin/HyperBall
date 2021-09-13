@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class BallMover : MonoBehaviour
 {
+
     [SerializeField] private float _speed;
     [SerializeField] private float _deflectionSpeed;
     [SerializeField] private float _bonusSpeed;
     [SerializeField] [Range(0.5f, 1)] private float _inputFieldShare;
 
-    public float CarrentSpeed => _carrentSpeed;
+    public float CarrentSpeed => _currentSpeed;
 
     private CollisionHandler _handler;
     private Rigidbody _rigidbody;
-    private float _carrentSpeed;
+    private float _currentSpeed;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _handler = GetComponent<CollisionHandler>();
-        _carrentSpeed = _speed;
+        _currentSpeed = _speed;
     }
 
     private void OnEnable()
@@ -34,7 +35,7 @@ public class BallMover : MonoBehaviour
 
     private void Update()
     {
-        _rigidbody.velocity = new Vector3(0, 0, _carrentSpeed);
+        _rigidbody.velocity = new Vector3(0, 0, _currentSpeed);
 
         if (Input.GetMouseButton(0))
         {
@@ -51,8 +52,8 @@ public class BallMover : MonoBehaviour
     private void OnBonusChargesChanged(int bonusCharges)
     {
         if (bonusCharges == 0)
-            _carrentSpeed = _speed;
+            _currentSpeed = _speed;
         else
-            _carrentSpeed = _bonusSpeed;
+            _currentSpeed = _bonusSpeed;
     }
 }
