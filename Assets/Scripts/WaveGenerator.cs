@@ -5,11 +5,13 @@ public class WaveGenerator : MonoBehaviour
     [SerializeField] private float _spawnDelay;
     [SerializeField] private float _obstaclesDistanceZ;
     [SerializeField] private int _obstaclesCount;
+    [SerializeField] private float _gameAcceleration;
     [SerializeField] private int _coinsBetweenObstaclesCount;
     [SerializeField] private Transform _container;
     [SerializeField] private ObstaclesGenerator _obstaclesGenerator;
     [SerializeField] private BonusesGenerator _coinsGenerator;
-    [SerializeField] private float _gameAcceleration;
+
+    [SerializeField] private UIPopup _popup;
 
     private GameObject _endWaveTrigger;
 
@@ -55,6 +57,7 @@ public class WaveGenerator : MonoBehaviour
 
     private void OnWaveEnded(EndWave endWave)
     {
+        ShowEndWaveMassage();
         DisableObjectsInContainer();
         CreateWave();
         Time.timeScale += _gameAcceleration;
@@ -64,5 +67,15 @@ public class WaveGenerator : MonoBehaviour
     {
         foreach (Transform item in _container)
             item.gameObject.SetActive(false);
+    }
+
+    private void ShowEndWaveMassage()
+    {
+        string[] massages = new string[] {"Coool", "Just do it", "Keep it up"};
+
+        int massageNumber = Random.Range(0, massages.Length);
+
+        _popup.ShowMassage(massages[massageNumber]);
+
     }
 }
