@@ -6,9 +6,6 @@ public class CollisionHandler : MonoBehaviour
 {    
     [SerializeField] private float _gemeOverDelay;
     [SerializeField] private Vector3 _reboundVector;
-    [SerializeField] private AudioSource _coinAudioSource;
-    [SerializeField] private AudioSource _bonusAudioSource;
-    [SerializeField] private AudioSource _obstacleDestroyAudioSource;
 
     public UnityAction GameOver;
     public UnityAction<int> CoinCatched;
@@ -26,7 +23,6 @@ public class CollisionHandler : MonoBehaviour
             }
             else
             {
-                _obstacleDestroyAudioSource.Play();
                 obstacle.Disable();
                 _currentBonusCharges--;
                 BonusChargesChanged?.Invoke(_currentBonusCharges);
@@ -39,7 +35,6 @@ public class CollisionHandler : MonoBehaviour
         {
             CoinCatched?.Invoke(coin.ScoreValue);
             other.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-            _coinAudioSource.Play();
             coin.Disable();
         }
 
@@ -49,7 +44,6 @@ public class CollisionHandler : MonoBehaviour
             BonusChargesChanged?.Invoke(_currentBonusCharges);
             CoinCatched?.Invoke(bonus.ScoreValue);
             other.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-            _bonusAudioSource.Play();
             bonus.Disable();
         }
     }

@@ -57,7 +57,7 @@ public abstract class ObjectPool : MonoBehaviour
     protected bool TryGetObject(out GameObject result)
     {
         result = Pool.FirstOrDefault(p => p.activeSelf == false);
-
+        
         return result != null;
     }
 
@@ -75,7 +75,7 @@ public abstract class ObjectPool : MonoBehaviour
                 }
             }
         }
-    }
+    }  
 
     public void ResetPool()
     {

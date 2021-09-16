@@ -1,34 +1,36 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshRenderer), typeof(Collider))]
 public class InteractiveObject : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private AudioSource _disableSound;
+    [SerializeField] private float _disabledDelay;
 
-    private MeshRenderer _meshRenderer;
-    private Collider _collider;
+    [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private Collider _collider;
 
-    private void Start()
+    private Coroutine _corutine;
+
+    private void OnDisable()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
-        _collider = GetComponent<Collider>();
+        if (_corutine != null)
+            StopCoroutine(_corutine);
+        _meshRenderer.enabled = true;
+        _collider.enabled = true;
     }
-
     public void Disable()
     {
-        float time = _particleSystem.main.startLifetimeMultiplier;
+        _disableSound.Play();
         _meshRenderer.enabled = false;
         _collider.enabled = false;
         _particleSystem.Play();
-        StartCoroutine(DisableBy(time));
+        _corutine = StartCoroutine(DisableBy(_disabledDelay));
     }
 
     private IEnumerator DisableBy(float time)
     {
         yield return new WaitForSeconds(time);
-        _meshRenderer.enabled = true;
-        _collider.enabled = true;
         gameObject.SetActive(false);
     }
 }
